@@ -6,6 +6,7 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
+            grid-gap: 10px;
         }
         
         .heading .line {
@@ -53,9 +54,9 @@
         .projects {
             display: grid;
             grid-template-columns: auto auto;
-            grid-row-gap: 20px;
+            grid-row-gap: 50px;
             margin: 20px auto;
-            grid-column-gap: 20px;
+            grid-column-gap: 40px;
             max-width: 500px;
             padding: 10px;
         }
@@ -76,9 +77,22 @@
             display: grid;
             height: 100%;
             grid-template-rows: 1fr auto;
+            background-image: url("images/paper.png");
         }
 
-        @media only screen and (max-width: 600px) {
+        a {
+          color: black;
+        }
+
+        * {
+          font-family: "kalam";
+        }
+        @font-face {
+          font-family: "kalam";
+          src: url("fonts/Kalam-Regular.ttf");
+        }
+
+        @media only screen and (max-width: 650px) {
             .projects {
                 grid-template-columns: auto;
                 max-width: 250px;
@@ -116,10 +130,11 @@
                 <div class="project" v-for="proj in filtered_projects">
                     <div class="image"><img :src="'images/' + proj.image"></div>
                     <div class="text">
-                        <div class="name">{{proj.nwm}}</div>
-                        <div class="desc">{{proj.description}}
-                            <a v-show="proj.website" :href="proj.website" target="_blank">Webstie</a>
+                        <div class="name">
+                          <a v-if="proj.website" :href="proj.website" target="_blank">{{proj.nwm}}</a>
+                          <span v-if="!proj.website">{{ proj.nwm }}</span>
                         </div>
+                        <div class="desc">{{proj.description}}</div>
                     </div>
                 </div>
             </div>
@@ -137,9 +152,7 @@
 <body>
     <div id="app">
         
-    </div>
-    
-    <h3 style="text-align: center; margin-top: 50px;">Hope you ❤︎'ed it</h3>
+    </div>    
 </body>
 <script>
     
